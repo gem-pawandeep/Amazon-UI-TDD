@@ -46,6 +46,7 @@ public void projectSecificBeforemethod(){
             Amazon.ValidatingUrl();
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -63,6 +64,7 @@ public void projectSecificBeforemethod(){
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -73,6 +75,7 @@ public void projectSecificBeforemethod(){
             GemTestReporter.addTestStep("Login error message", DriverAction.getElementText(Amazon_locators.error_msg), STATUS.PASS);
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -89,6 +92,7 @@ public void projectSecificBeforemethod(){
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -98,6 +102,7 @@ public void projectSecificBeforemethod(){
             Amazon.firstResultPrice(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -107,6 +112,7 @@ public void projectSecificBeforemethod(){
             Amazon.lowToHigh(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -116,6 +122,7 @@ public void projectSecificBeforemethod(){
             Amazon.highToLow(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -125,6 +132,7 @@ public void projectSecificBeforemethod(){
             Amazon.validateHyperlink(Amazon_locators.insta_link, "instagram");
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 /*
@@ -152,6 +160,7 @@ public void projectSecificBeforemethod(){
             Amazon.maxPrice(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -161,6 +170,7 @@ public void projectSecificBeforemethod(){
             Amazon.minPrice(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -170,6 +180,7 @@ public void projectSecificBeforemethod(){
             Amazon.diffMaxMin(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -179,6 +190,7 @@ public void projectSecificBeforemethod(){
             Amazon.validateLanguage(inputData.get("Hindi").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -256,6 +268,7 @@ public void projectSecificBeforemethod(){
             Amazon.alexaDot();
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -265,6 +278,7 @@ public void projectSecificBeforemethod(){
             Amazon.cartAfterAdding(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -274,6 +288,7 @@ public void projectSecificBeforemethod(){
             Amazon.locationValidation(inputData.get("pincode").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -283,6 +298,7 @@ public void projectSecificBeforemethod(){
             Amazon.countryValidation(inputData.get("Country").getAsString(), Amazon_locators.Australia, inputData.get("Name").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -435,7 +451,8 @@ public void projectSecificBeforemethod(){
         try {
             Amazon.priceFilter(inputData.get("item").getAsString(), inputData.get("low").getAsString(), inputData.get("high").getAsString());
         } catch (Exception e) {
-            GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -445,6 +462,7 @@ public void projectSecificBeforemethod(){
             Amazon.addItemRemove(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -454,6 +472,7 @@ public void projectSecificBeforemethod(){
             Amazon.cartValidateAfterNavigate(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -463,6 +482,7 @@ public void projectSecificBeforemethod(){
             Amazon.picodeValidation(inputData.get("pincode").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -472,6 +492,7 @@ public void projectSecificBeforemethod(){
             Amazon.validateCount(inputData.get("item").getAsString(), inputData.get("item2").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -481,6 +502,7 @@ public void projectSecificBeforemethod(){
             Amazon.totalCountSameItem(inputData.get("item").getAsString());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 /*
@@ -499,6 +521,7 @@ public void projectSecificBeforemethod(){
             Amazon.newReleaseClick();
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -508,6 +531,7 @@ public void projectSecificBeforemethod(){
             Amazon.bestSellerClick();
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -524,6 +548,7 @@ public void projectSecificBeforemethod(){
             GemTestReporter.addTestStep("Current Window Handle:",DriverAction.getWindowHandle(),STATUS.PASS);
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -539,6 +564,7 @@ public void projectSecificBeforemethod(){
             GemTestReporter.addTestStep("Current Window Handle:",DriverAction.getWindowHandle(),STATUS.PASS);
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -550,6 +576,7 @@ public void projectSecificBeforemethod(){
             System.out.println(DriverAction.getPageSource());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -564,6 +591,7 @@ public void projectSecificBeforemethod(){
           //  GemTestReporter.addTestStep("ROLE ",DriverAction.getArialRole(Amazon_locators.icon),STATUS.PASS);
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -586,6 +614,7 @@ public void projectSecificBeforemethod(){
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -624,6 +653,7 @@ public void projectSecificBeforemethod(){
             DriverAction.AcceptAlert(true);
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -643,6 +673,7 @@ public void projectSecificBeforemethod(){
             DriverAction.waitSec(2);
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -657,6 +688,7 @@ public void projectSecificBeforemethod(){
             DriverAction.doubleClick(Amazon_locators.dclick,"Double Click");
         }catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -671,6 +703,7 @@ public void projectSecificBeforemethod(){
             DriverAction.rightClick(Amazon_locators.rclick,"Right Click");
         }catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -685,6 +718,7 @@ public void projectSecificBeforemethod(){
             DriverAction.dragAndDrop(Amazon_locators.from,Amazon_locators.to,true);
         }catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -698,6 +732,7 @@ public void projectSecificBeforemethod(){
             DriverAction.dropDown(Amazon_locators.dropdown,inputData.get("name").getAsString());
         }catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -712,6 +747,7 @@ public void projectSecificBeforemethod(){
             DriverAction.waitSec(5);
         }catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 
@@ -726,6 +762,7 @@ public void projectSecificBeforemethod(){
             DriverAction.pageScroll(0,-3000,true);
         }catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL,DriverAction.takeSnapShot());
+            return;
         }
     }
 }
