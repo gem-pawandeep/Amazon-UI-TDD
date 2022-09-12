@@ -13,10 +13,27 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
-            <dependency>
-                <groupId>com.gemecosystem.gemjar</groupId>
-                <artifactId>gemjar</artifactId>
-                <version>1.0.1</version>
-            </dependency>
+    <!--
+        <dependency>
+            <groupId>com.gemecosystem.gemjar</groupId>
+            <artifactId>gemjar</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+          <dependency>
+            <groupId>com.gemecosystem.gemjar</groupId>
+            <artifactId>gemjar</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        -->
+        <!-- https://mvnrepository.com/artifact/com.gemecosystem.gemjar/gemjar-core -->
+
+
+        <dependency>
+            <groupId>com.gemecosystem.gemjar</groupId>
+            <artifactId>gemjar</artifactId>
+            <version>1.10</version>
+        </dependency>
+
     </dependencies>
+
 </project>

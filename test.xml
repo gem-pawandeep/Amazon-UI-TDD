@@ -4,8 +4,6 @@
             <class name="com.qa.Quantic_sample.Tests.amazonTestCases"/>
             <methods>
                 <include name="launchedAmazon"/>
-                <include name="getPriceOfFirstResult"/>
-                <include name="validateEmptyCartByDefault"/>
             </methods>
         </classes>
     </test> <!-- Default test -->

@@ -543,7 +543,6 @@ public class Amazon {
         GemTestReporter.addTestStep("Action", "Switching control to new Tab", STATUS.PASS);
     }
 
-
     public static void backTop() throws IOException {
         DriverAction.click(Amazon_locators.backToTop, "Back To Top");
     }

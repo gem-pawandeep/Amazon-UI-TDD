@@ -1,15 +1,16 @@
 {
-  "environment": "prod",
-  "projectName": "GemJar_UI",
+  "environment": "dev",
+  "projectName": "AMAZON-UI-JV",
   "reportName": "GemJar UI Sample Report",
-  "gemjarUserName": "raghavsuneja123",
-  "gemjarToken": "43ff688a-ce8a-46a9-8579-036bc7bb2abb1662033869944",
+  "gemjarUserName": "pawan_28",
+  "gemjarSubID": "test_id",
+  "gemjarToken": "cd4d1ba1-6186-4732-8cea-ce4e63e48a3a1662446561444",
   "dev": {
-    "browserName": "firefox",
+    "browserName": "chrome",
     "launchUrl": "https://www.amazon.in",
     "browserTimeout": 100
-},
-  "prod": {
+  },
+  "beta": {
     "browserName": "chrome",
     "launchUrl": "https://www.amazon.in",
     "browserTimeout": 100
