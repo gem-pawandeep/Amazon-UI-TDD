@@ -8,13 +8,13 @@
     }
   },
   "loginCorrectCredentials": {
-    "runFlag": "Y",
+    "runFlag": "N",
     "category": "Test",
     "scenarioID": "V2S002",
     "inputData": {
       "id": 102,
-      "email": "pawan27cool@gmail.com",
-      "pass": "Pawandeep28072000@"
+      "email": "+91 7818027003",
+      "pass": "Pawandeep28@"
     }
   },
   "loginIncorrectCredentials": {
@@ -59,7 +59,7 @@
     "scenarioID": "V2S007",
     "inputData": {
       "id": 107,
-      "item": "mixer"
+      "item": "earphone"
     }
   },
   "validateInstagramHyperlink": {
@@ -92,7 +92,7 @@
     "scenarioID": "V2S011",
     "inputData": {
       "id": 111,
-      "item": "mixer"
+      "item": "charger"
     }
   },
   "minPriceSearchItem": {
@@ -101,7 +101,7 @@
     "scenarioID": "V2S012",
     "inputData": {
       "id": 112,
-      "item": "mixer"
+      "item": "charger"
     }
   },
   "getDiffMaxMinItem": {
@@ -110,7 +110,7 @@
     "scenarioID": "V2S013",
     "inputData": {
       "id": 113,
-      "item": "mixer"
+      "item": "earphone"
     }
   },
   "validateLangChangeHindi": {
@@ -407,7 +407,7 @@
     "scenarioID": "V2S044",
     "inputData": {
       "id": 144,
-      "item": "mixer"
+      "item": "charger"
     }
   },
   "validatePincodeAfterNavigate": {
@@ -425,7 +425,7 @@
     "scenarioID": "V2S046",
     "inputData": {
       "id": 146,
-      "item": "mixer",
+      "item": "diary",
       "item2": "charger"
     }
   },

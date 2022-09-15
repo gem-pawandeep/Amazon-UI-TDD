@@ -10,7 +10,7 @@ public class Amazon_locators {
     public static By cart_icon = By.xpath("//a[@id='nav-cart']");
     public static By check_cart_empty = By.xpath("//*[@id='sc-active-cart']//h2");
     public static By search_Box = By.xpath("//input[@id='twotabsearchtextbox']");
-    public static By search_Button = By.xpath("//*[@class='nav-search-submit nav-sprite']");
+    public static By search_Button = By.xpath("//input[@id='nav-search-submit-button']");
     public static By first_result = By.xpath("//*[@data-image-index='1']");
     public static By second_result = By.xpath("//*[@data-image-index='2']");
     public static By price = By.xpath("//div[@id='corePrice_feature_div']//span[@class='a-price-whole']");
@@ -62,7 +62,10 @@ public class Amazon_locators {
     public static By lowPrice=By.xpath("//input[@id='low-price']");
     public static By highPrice=By.xpath("//input[@id='high-price']");
     public static By Go=By.xpath("//input[@aria-labelledby='a-autoid-1-announce']");
-    public static By onScreenFirstResult=By.xpath("//*[@data-index='2']//span[@class='a-price-whole']");
+    public static By onScreenFirstResult=By.xpath("//div[@class='a-section a-spacing-small a-spacing-top-small']//span[@class='a-price-whole']");
+
+
+    //*[@data-index='2']//span[@class='a-price-whole']
     public static By onScreenFirstResultName=By.xpath("//*[@data-index='2']//span[@class='a-size-medium a-color-base a-text-normal']");
     public static By cartDrpDwn=By.xpath("//span[@class='a-button-text a-declarative']");
     public static By cartDel=By.xpath("//input[@value='Delete']");
@@ -79,7 +82,7 @@ public class Amazon_locators {
     public static By alert=By.xpath("//button[@onclick='jsAlert()']");
     public static By confirm=By.xpath("//button[@onclick='jsConfirm()']");
     public static By prompt=By.xpath("//button[@onclick='jsPrompt()']");
-    public static By usrNme=By.xpath("//*[@id='txtUsername']");
+    public static By usrNme=By.xpath("//input[@name='username']");
 
     public static By dclick=By.xpath("//button[@id='doubleClickBtn']");
 

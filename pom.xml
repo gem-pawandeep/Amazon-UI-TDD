@@ -26,12 +26,10 @@
         </dependency>
         -->
         <!-- https://mvnrepository.com/artifact/com.gemecosystem.gemjar/gemjar-core -->
-
-
         <dependency>
             <groupId>com.gemecosystem.gemjar</groupId>
             <artifactId>gemjar</artifactId>
-            <version>1.10</version>
+            <version>1.11</version>
         </dependency>
 
     </dependencies>
