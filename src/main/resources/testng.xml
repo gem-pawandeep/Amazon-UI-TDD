@@ -1,0 +1,14 @@
+<suite name="Regression_Test" parallel="methods" thread-count="5">
+    <test verbose="5" name="Test1" >
+        <classes>
+            <class name="com.qa.Amazon.Tests.amazonTestCases"/>
+<!--            <methods>-->
+                <include name="launchedAmazon"/>
+<!--                <include name="loginIncorrectCredentials"/>-->
+<!--                <include name="getPriceOfFirstResult"/>-->
+<!--                <include name="validateLangChangeHindi"/>-->
+<!--                <include name="alexaDotFromLeftTreeMenu"/>-->
+<!--            </methods>-->
+        </classes>
+    </test> <!-- Default test -->
+</suite> <!-- Default suite -->

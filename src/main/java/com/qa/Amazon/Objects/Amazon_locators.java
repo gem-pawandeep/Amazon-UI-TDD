@@ -1,4 +1,4 @@
-package com.qa.Quantic_sample.Objects;
+package com.qa.Amazon.Objects;
 
 import org.openqa.selenium.By;
 
@@ -10,7 +10,7 @@ public class Amazon_locators {
     public static By cart_icon = By.xpath("//a[@id='nav-cart']");
     public static By check_cart_empty = By.xpath("//*[@id='sc-active-cart']//h2");
     public static By search_Box = By.xpath("//input[@id='twotabsearchtextbox']");
-    public static By search_Button = By.xpath("//input[@id='nav-search-submit-button']");
+    public static By search_Button = By.xpath("//input[@value='Go']");
     public static By first_result = By.xpath("//*[@data-image-index='1']");
     public static By second_result = By.xpath("//*[@data-image-index='2']");
     public static By price = By.xpath("//div[@id='corePrice_feature_div']//span[@class='a-price-whole']");

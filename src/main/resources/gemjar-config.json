@@ -1,19 +1,18 @@
 {
-  "environment": "dev",
-  "projectName": "AMAZON-UI-JV",
+  "environment": "beta",
+  "projectName": "GEMECO-API-JV-BDD",
   "reportName": "GemJar UI Sample Report",
-  "gemjarUserName": "pawan_28",
+  "gemjarUserName": "pdeep",
+  "gemjarToken": "76f1021f-0ce5-45b6-af17-df2c36d9b11c1669200156981",
   "gemjarSubID": "test_id",
-  "gemjarToken": "cd4d1ba1-6186-4732-8cea-ce4e63e48a3a1662446561444",
   "dev": {
     "browserName": "chrome",
-    "chromeOptions": "",
     "launchUrl": "https://www.amazon.in",
-    "browserTimeout": 100
+    "browserTimeout": 10
   },
   "beta": {
     "browserName": "chrome",
     "launchUrl": "https://www.amazon.in",
-    "browserTimeout": 100
+    "browserTimeout": 10
   }
 }

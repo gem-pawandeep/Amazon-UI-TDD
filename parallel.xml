@@ -2,7 +2,7 @@
     <test name="Test1">
         <parameter name="browserName" value="chrome"/>
         <classes>
-            <class name="com.qa.Quantic_sample.Tests.amazonTestCases"/>
+            <class name="com.qa.Amazon.Tests.amazonTestCases"/>
             <methods>
                 <include name="launchedAmazon"/>
             </methods>
@@ -11,7 +11,7 @@
     <test verbose="2" name="Test2">
         <parameter name="browserName" value="firefox"/>
         <classes>
-            <class name="com.qa.Quantic_sample.Tests.amazonTestCases"/>
+            <class name="com.qa.Amazon.Tests.amazonTestCases"/>
             <methods>
                 <include name="launchedAmazon"/>
             </methods>

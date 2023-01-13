@@ -1,5 +1,6 @@
-package com.qa.Quantic_sample.Tests;
+package com.qa.Amazon.Tests;
 
+import com.gemini.generic.exception.GemException;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.tdd.GemJarDataProvider;
@@ -7,28 +8,22 @@ import com.gemini.generic.tdd.GemjarTestngBase;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
 import com.google.gson.JsonObject;
-import com.qa.Quantic_sample.Objects.Amazon_locators;
-import com.qa.Quantic_sample.Pages.Amazon;
-import com.qa.Quantic_sample.Utility.Common_functions;
+import com.qa.Amazon.Objects.Amazon_locators;
+import com.qa.Amazon.Pages.Amazon;
+import com.qa.Amazon.Utility.Common_functions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class amazonTestCases extends GemjarTestngBase {
 
     @BeforeMethod
-    public void projectSecificBeforemethod() {
+    public void start() throws GemException {
         DriverManager.setUpBrowser();
     }
 
@@ -44,12 +39,15 @@ public class amazonTestCases extends GemjarTestngBase {
                 "He looked at the sand. Picking up a handful, he wondered how many grains were in his hand. Hundreds of thousands? \"Not enough,\" the said under his breath. I need more.\n" +
                 "He wandered down the stairs and into the basement. The damp, musty smell of unuse hung in the air. A single, small window let in a glimmer of light, but this simply made the shadows in the basement deeper. He inhaled deeply and looked around at a mess that had been accumulating for over 25 years. He was positive that this was the place he wanted to live.\n" +
                 "He heard the loud impact before he ever saw the result. It had been so loud that it had actually made him jump back in his seat. As soon as he recovered from the surprise, he saw the crack in the windshield. It seemed to be an analogy of the current condition of his life.", STATUS.PASS);
+                GemTestReporter.addTestStep("","",STATUS.PASS,DriverAction.takeSnapShot());
     }
 
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void launchedAmazon(JsonObject inputData) {
         try {
             Amazon.ValidatingUrl();
+            GemTestReporter.addTestStep("check1", "check1", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("check1", "check1", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
         }
@@ -77,11 +75,12 @@ public class amazonTestCases extends GemjarTestngBase {
         try {
             Amazon.SignIn(inputData.get("email").getAsString(), inputData.get("pass").getAsString());
             GemTestReporter.addTestStep("Login error message", DriverAction.getElementText(Amazon_locators.error_msg), STATUS.PASS);
+            GemTestReporter.addTestStep("check1", "check1", STATUS.FAIL, DriverAction.takeSnapShot());
+            GemTestReporter.addTestStep("check1", "check1", STATUS.PASS, DriverAction.takeSnapShot());
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
-
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void validateEmptyCartByDefault(JsonObject inputData) throws IOException {
         try {
@@ -522,10 +521,10 @@ public class amazonTestCases extends GemjarTestngBase {
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void getElementsFunctionality(JsonObject inputData) throws IOException {
         try {
-            boolean flag;
+            STATUS flag;
             Common_functions.search(inputData.get("item").getAsString());
             flag = DriverAction.click(Amazon_locators.pricedrpdwn, "dropdown");
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
             List<WebElement> elements = DriverAction.getElements(Amazon_locators.drpdwn);
@@ -542,10 +541,10 @@ public class amazonTestCases extends GemjarTestngBase {
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void getElementsTextFunctionality(JsonObject inputData) throws IOException {
         try {
-            boolean flag;
+            STATUS flag;
             Common_functions.search(inputData.get("item").getAsString());
             flag = DriverAction.click(Amazon_locators.pricedrpdwn, "dropdown");
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
             List<String> elements = DriverAction.getElementsText(Amazon_locators.drpdwn);
@@ -585,131 +584,122 @@ public class amazonTestCases extends GemjarTestngBase {
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void iframeFunctionalities(JsonObject inputData) throws IOException {
         try {
-            boolean flag;
+            STATUS flag;
             DriverAction.setImplicitTimeOut(50);
             DriverAction.setPageLoadTimeOut(50);
             DriverAction.setScriptTimeOut(50);
             DriverAction.waitSec(2);
-            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString(), true);
-            if (!flag) {
+            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString());
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
             int size = DriverAction.getElements(By.tagName("iframe")).size();
             GemTestReporter.addTestStep("Total iframe present in WebPage", "" + size, STATUS.PASS);
-            flag = DriverAction.switchToFrame(1, true);
-            if (!flag) {
+            flag = DriverAction.switchToFrame(1);
+            if (flag!=STATUS.PASS) {
                 return;
             }
-            flag = DriverAction.switchToDefaultContent(true);
-            if (!flag) {
-                return;
-            }
+            DriverAction.switchToDefaultContent();
             for (int i = 0; i < (size - 1); i++) {
-                flag = DriverAction.switchToFrame(i, true);
-                if (!flag) {
+                flag = DriverAction.switchToFrame(i);
+                if (flag!=STATUS.PASS) {
                     return;
                 }
-                flag = DriverAction.switchToDefaultContent(true);
-                if (!flag) {
-                    return;
-                }
+                DriverAction.switchToDefaultContent();
             }
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
-    @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
-    public void alertFunctionality(JsonObject inputData) throws IOException {
-        try {
-            boolean flag;
-            DriverAction.setImplicitTimeOut(5);
-            DriverAction.navigateToUrl(inputData.get("url").getAsString());
-            flag = DriverAction.click(Amazon_locators.alert);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(2);
-            String s = DriverManager.getWebDriver().switchTo().alert().getText();
-            flag = DriverAction.switchToAlert(false);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(3);
-            GemTestReporter.addTestStep("Alert Text", "" + s, STATUS.PASS);
-            flag = DriverAction.AcceptAlert(true);
-            if (!flag) {
-                return;
-            }
-            flag = DriverAction.click(Amazon_locators.alert);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(2);
-            flag = DriverAction.AcceptAlert(true);
-            if (!flag) {
-                return;
-            }
-            flag = DriverAction.click(Amazon_locators.confirm);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(2);
-            flag = DriverAction.DismissAlert(true);
-            if (!flag) {
-                return;
-            }
-            flag = DriverAction.click(Amazon_locators.confirm);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(2);
-            flag = DriverAction.AcceptAlert(true);
-            if (!flag) {
-                return;
-            }
-            flag = DriverAction.click(Amazon_locators.prompt);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(2);
-            flag = DriverAction.AlertInput(inputData.get("name").getAsString(), true);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(3);
-        } catch (Exception e) {
-            GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
-        }
-    }
+  //  @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
+//    public void alertFunctionality(JsonObject inputData) throws IOException {
+//        try {
+//            STATUS flag;
+//            DriverAction.setImplicitTimeOut(5);
+//            DriverAction.navigateToUrl(inputData.get("url").getAsString());
+//            flag = DriverAction.click(Amazon_locators.alert);
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            DriverAction.waitSec(2);
+//            String s = DriverManager.getWebDriver().switchTo().alert().getText();
+//            DriverAction.switchToAlert();
+//            DriverAction.waitSec(3);
+//            GemTestReporter.addTestStep("Alert Text", "" + s, STATUS.PASS);
+//            flag = DriverAction.AcceptAlert();
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            flag = DriverAction.click(Amazon_locators.alert);
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            DriverAction.waitSec(2);
+//            flag = DriverAction.AcceptAlert();
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            flag = DriverAction.click(Amazon_locators.confirm);
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            DriverAction.waitSec(2);
+//            flag = DriverAction.DismissAlert();
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            flag = DriverAction.click(Amazon_locators.confirm);
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            DriverAction.waitSec(2);
+//            flag = DriverAction.AcceptAlert();
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            flag = DriverAction.click(Amazon_locators.prompt);
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            DriverAction.waitSec(2);
+//            flag = DriverAction.AlertInput(inputData.get("name").getAsString());
+//            if (flag!=STATUS.PASS) {
+//                return;
+//            }
+//            DriverAction.waitSec(3);
+//        } catch (Exception e) {
+//            GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
+//        }
+//    }
 
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void switchToActiveElement(JsonObject inputData) throws IOException {
         try {
-            boolean flag;
+            STATUS flag;
             DriverAction.setImplicitTimeOut(50);
             DriverAction.setScriptTimeOut(50);
             DriverAction.setPageLoadTimeOut(100);
-            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString(), true);
+            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString());
             DriverAction.waitSec(5);
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
             flag = DriverAction.typeText(Amazon_locators.usrNme, inputData.get("username").getAsString() + (Keys.TAB), "username");
             ;
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
             flag = DriverAction.typeText(DriverAction.switchToActiveElement(), inputData.get("password").getAsString() + (Keys.TAB), "password");
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
             flag = DriverAction.click(DriverAction.switchToActiveElement(), "sign in");
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
@@ -721,19 +711,13 @@ public class amazonTestCases extends GemjarTestngBase {
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void doubleClickFunctionality(JsonObject inputData) {
         try {
-            boolean flag;
-            DriverAction.setImplicitTimeOut(50);
-            DriverAction.setScriptTimeOut(50);
-            DriverAction.setPageLoadTimeOut(100);
-            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString(), true);
-            if (!flag) {
+            STATUS flag;
+            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString());
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
-            flag = DriverAction.doubleClick(Amazon_locators.dclick, "Double Click");
-            if (!flag) {
-                return;
-            }
+            DriverAction.doubleClick(Amazon_locators.dclick, "Double Click");
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
         }
@@ -742,42 +726,30 @@ public class amazonTestCases extends GemjarTestngBase {
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void rightClickFunctionality(JsonObject inputData) {
         try {
-            boolean flag;
-            DriverAction.setImplicitTimeOut(5);
-            DriverAction.setScriptTimeOut(5);
-            DriverAction.setPageLoadTimeOut(10);
-            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString(), true);
-            if (!flag) {
+            STATUS flag;
+            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString());
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
-            flag = DriverAction.rightClick(Amazon_locators.rclick, "Right Click");
-            if (!flag) {
-                return;
-            }
+            DriverAction.rightClick(Amazon_locators.rclick, "Right Click");
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
-
         }
     }
 
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void dragAndDropFunctionality(JsonObject inputData) {
         try {
-            boolean flag;
-            DriverAction.setImplicitTimeOut(50);
-            DriverAction.setScriptTimeOut(50);
-            DriverAction.setPageLoadTimeOut(100);
-            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString(), true);
+            STATUS flag;
+            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString());
             DriverAction.waitSec(5);
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(2);
-            flag = DriverAction.dragAndDrop(Amazon_locators.from, Amazon_locators.to, true);
-            if (!flag) {
-                return;
-            }
+            DriverAction.dragAndDrop(Amazon_locators.from, Amazon_locators.to);
+
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
         }
@@ -786,19 +758,14 @@ public class amazonTestCases extends GemjarTestngBase {
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void dropDownFunctionality(JsonObject inputData) {
         try {
-            boolean flag;
-            DriverAction.setImplicitTimeOut(50);
-            DriverAction.setScriptTimeOut(50);
-            DriverAction.setPageLoadTimeOut(100);
-            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString(), true);
+            STATUS flag;
+            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString());
             DriverAction.waitSec(5);
-            if (!flag) {
+            if (flag!=STATUS.PASS) {
                 return;
             }
-            flag = DriverAction.dropDown(Amazon_locators.dropdown, inputData.get("name").getAsString());
-            if (!flag) {
-                return;
-            }
+            DriverAction.dropDown(Amazon_locators.dropdown, inputData.get("name").getAsString());
+
         } catch (Exception e) {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
         }
@@ -807,16 +774,16 @@ public class amazonTestCases extends GemjarTestngBase {
     @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
     public void fileUploadFunctionality(JsonObject inputData) {
         try {
-            boolean flag;
+            STATUS flag;
             DriverAction.setImplicitTimeOut(5);
             DriverAction.setScriptTimeOut(5);
             DriverAction.setPageLoadTimeOut(10);
-            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString(), true);
-            if (!flag) {
+            flag = DriverAction.navigateToUrl(inputData.get("url").getAsString());
+            if (flag!=STATUS.PASS) {
                 return;
             }
-            flag = DriverAction.fileUpload(Amazon_locators.fileupload, inputData.get("path").getAsString(), true);
-            if (!flag) {
+            flag = DriverAction.fileUpload(Amazon_locators.fileupload, inputData.get("path").getAsString());
+            if (flag!=STATUS.PASS) {
                 return;
             }
             DriverAction.waitSec(5);
@@ -824,26 +791,27 @@ public class amazonTestCases extends GemjarTestngBase {
             GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
+//
+//    @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
+//    public void pageScrollFunctionality(JsonObject inputData) {
+//        try {
+//            DriverAction.scrollToBottom(true);
+//            DriverAction.waitSec(2);
+//            DriverAction.scrollToTop(true);
+//            DriverAction.waitSec(2);
+//            DriverAction.scrollAnElementToSpecificPosition(0,1000,true);
+//            DriverAction.waitSec(2);
+//            DriverAction.scrollIntoView(By.xpath("//*[@id=\"navFooter\"]/div[4]/ul/li[1]/a"),"Australia",true);
+//            DriverAction.waitSec(2);
+//            DriverAction.scrollToTop(true);
+//            DriverAction.waitSec(2);
+//            WebElement element=DriverAction.getElement(By.xpath("//*[@id=\"nav-link-accountList\"]"));
+//            DriverAction.hoverOver(element,"Account");
+//            DriverAction.waitSec(2);
+//        } catch (Exception e) {
+//            GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
+//        }
+//    }
 
-    @Test(dataProvider = "GemJarDataProvider", dataProviderClass = GemJarDataProvider.class)
-    public void pageScrollFunctionality(JsonObject inputData) {
-        try {
-            boolean flag;
-            DriverAction.setImplicitTimeOut(5);
-            DriverAction.setScriptTimeOut(5);
-            DriverAction.setPageLoadTimeOut(10);
-            flag = DriverAction.pageScroll(0, 10000, true);
-            if (!flag) {
-                return;
-            }
-            DriverAction.waitSec(10);
-            flag = DriverAction.pageScroll(0, -3000, true);
-            if (!flag) {
-                return;
-            }
-        } catch (Exception e) {
-            GemTestReporter.addTestStep("Some Error Occurred", e.toString(), STATUS.FAIL, DriverAction.takeSnapShot());
-        }
-    }
 
 }
